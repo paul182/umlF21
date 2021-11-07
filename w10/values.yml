@@ -1,0 +1,57 @@
+serviceMonitor:
+  # enabled should be set to true to enable prometheus-operator discovery of this service
+  enabled: true``
+  # interval is the interval at which metrics should be scraped
+  interval: 30s
+  # scrapeTimeout is the timeout after which the scrape is ended
+  scrapeTimeout: 10s
+  # additionalLabels is the set of additional labels to add to the ServiceMonitor
+  additionalLabels:
+    release: prometheus
+
+serviceAccount:
+  # Specifies whether a ServiceAccount should be created
+  create: true
+
+collectors:
+  info_schema.query_response_time: true
+  info_schema.tables: true
+  info_schema.tables.databases: '*'
+  info_schema.tablestats: true
+  info_schema.schemastats: true
+  engine_innodb_status: true
+  info_schema.userstats: true
+  # auto_increment.columns: false
+  # binlog_size: false
+  # info_schema.clientstats: false
+  # info_schema.innodb_metrics: false
+  # info_schema.innodb_tablespaces: false
+  # info_schema.innodb_cmp: false
+  # info_schema.innodb_cmpmem: false
+  # info_schema.processlist: false
+  # info_schema.processlist.min_time: 0
+  # info_schema.query_response_time: false
+  # info_schema.tables.databases: '*'
+  # info_schema.tablestats: false
+  # perf_schema.eventsstatements: false
+  # perf_schema.eventsstatements.digest_text_limit: 120
+  # perf_schema.eventsstatements.limit: false
+  # perf_schema.eventsstatements.timelimit: 86400
+  # perf_schema.eventswaits: false
+  # perf_schema.file_events: false
+  # perf_schema.file_instances: false
+  # perf_schema.indexiowaits: false
+  # perf_schema.tableiowaits: false
+  # perf_schema.tablelocks: false
+  # perf_schema.replication_group_member_stats: false
+  # slave_status: true
+  # slave_hosts: false
+  # heartbeat: false
+  # heartbeat.database: heartbeat
+  # heartbeat.table: heartbeat
+
+# mysql connection params which build the DATA_SOURCE_NAME env var of the docker container
+mysql:
+  host: "mysql"
+  pass: "password"
+  user: "exporter"
