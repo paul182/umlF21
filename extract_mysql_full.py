@@ -1,6 +1,8 @@
 import pymysql
 import csv
+import boto3
 import configparser
+import psycopg2
 
 parser = configparser.ConfigParser()
 parser.read("pipeline.conf")
@@ -60,3 +62,5 @@ s3.upload_file(
     local_filename,
     bucket_name,
     s3_file)
+
+print("File uploaded to AWS S3!")
